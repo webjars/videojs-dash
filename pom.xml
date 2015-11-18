@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>videojs-dash</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.0-SNAPSHOT</version>
     <name>videojs-dash</name>
     <description>WebJar for video.js DASH</description>
     <url>http://webjars.org</url>
@@ -19,12 +19,12 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <upstream.version>2.0.0</upstream.version>
-        <upstream.url>https://github.com/videojs/videojs-contrib-dash/archive/v2.0.0.zip</upstream.url>
+        <upstream.url>https://github.com/videojs/videojs-contrib-dash/archive/v${upstream.version}.zip</upstream.url>
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</destDir>
         <requirejs>
             {
                 "paths": {
-                    "videojs-dash": "WEBJAR_ID"
+                    "videojs-dash": "js/videojs-dash"
                 }
             }
         </requirejs>
@@ -75,7 +75,7 @@
                                 <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}" />
                                 <echo message="moving resources" />
                                 <move todir="${destDir}">
-                                    <fileset dir="${project.build.directory}/videojs-contrib-dash-${upstream.version}" includes="src/"/>
+                                    <fileset dir="${project.build.directory}/videojs-contrib-dash-${upstream.version}/src"/>
                                 </move>
                             </target>
                         </configuration>
@@ -86,13 +86,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.5</version>
+                <version>2.5.3</version>
             </plugin>
 
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.2</version>
+                <version>1.6.6</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>sonatype-nexus-staging</serverId>
